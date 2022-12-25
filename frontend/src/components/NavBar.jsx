@@ -84,13 +84,13 @@ const NavBar = () => {
           <ul className="navbar-nav me-2 mb-2 mb-lg-0">
             <li className="nav-item">
               <a className="nav-link active" href="">
-                登入
+                註冊
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" href="">
-                註冊
-              </a>
+              <Link to="/login" className="nav-link active">
+                登入
+              </Link>
             </li>
           </ul>
         </div>
