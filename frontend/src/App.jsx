@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import About from "./components/About";
 import LogIn from "./components/LogIn";
+import Register from "./components/Register";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LogIn />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );

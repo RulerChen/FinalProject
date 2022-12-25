@@ -5,7 +5,7 @@ import { Google, Facebook } from "react-bootstrap-icons";
 
 import "../css/register.css";
 
-const LogIn = () => {
+const Register = () => {
   return (
     <div className="content">
       <div className="container">
@@ -17,22 +17,30 @@ const LogIn = () => {
             <div className="row justify-content-center">
               <div className="col-md-8">
                 <div className="mb-4">
-                  <h3>登入</h3>
-                  <p className="mb-4">請輸入您的帳號密碼</p>
+                  <h3>註冊</h3>
+                  <p className="mb-4">成為買家或賣家</p>
                 </div>
                 <form action="#" method="post">
-                  <div className="form-group first field--not-empty">
-                    <label htmlFor="username">帳號</label>
-                    <input type="text" className="form-control" id="username" />
+                  <div className="form-group  first field--not-empty">
+                    <label htmlFor="name">姓名</label>
+                    <input type="text" className="form-control" id="name" />
                   </div>
-                  <div className="form-group last mb-4 field--not-empty">
+                  <div className="form-group  field--not-empty">
+                    <label htmlFor="username">電子郵件</label>
+                    <input type="email" className="form-control" id="username" />
+                  </div>
+                  <div className="form-group   field--not-empty">
                     <label htmlFor="password">密碼</label>
                     <input type="password" className="form-control" id="password" />
+                  </div>
+                  <div className="form-group last mb-4 field--not-empty">
+                    <label htmlFor="passwordTwo">再次輸入密碼</label>
+                    <input type="password" className="form-control" id="passwordTwo" />
                   </div>
 
                   <input type="submit" value="Log In" className="btn btn-block btn-primary" />
 
-                  <span className="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
+                  <span className="d-block text-left my-4 text-muted">&mdash; or register with &mdash;</span>
 
                   <div className="social-login">
                     <a href="#" className="facebook pr-3">
@@ -56,4 +64,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Register;
