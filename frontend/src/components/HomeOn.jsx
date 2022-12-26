@@ -26,7 +26,7 @@ const HomeOn = () => {
           <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className="carousel-item active" data-bs-interval="2000">
             <img src={bg1} alt="" width="100%" className="bd-placeholder-img" />
             <div className="container">
               <div className="carousel-caption text-start">
@@ -40,7 +40,7 @@ const HomeOn = () => {
               </div>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item" data-bs-interval="2000">
             <img src={bg2} alt="" width="100%" className="bd-placeholder-img" />
             <div className="container">
               <div className="carousel-caption">
@@ -54,7 +54,7 @@ const HomeOn = () => {
               </div>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item" data-bs-interval="2000">
             <img src={bg3} alt="" width="100%" className="bd-placeholder-img" />
             <div className="container">
               <div className="carousel-caption text-end">
