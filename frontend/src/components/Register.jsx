@@ -1,11 +1,13 @@
 import React from "react";
 
-import img from "../pics/undraw_remotely_2j6y.svg";
+import { useHook } from "../hooks/useHook";
+import img from "../pics/logIn.svg";
 import { Google, Facebook } from "react-bootstrap-icons";
 
 import "../css/register.css";
 
 const Register = () => {
+  const { setSignedIn } = useHook();
   return (
     <div className="content">
       <div className="container">
@@ -20,41 +22,44 @@ const Register = () => {
                   <h3>註冊</h3>
                   <p className="mb-4">成為買家或賣家</p>
                 </div>
-                <form action="#" method="post">
-                  <div className="form-group  first field--not-empty">
-                    <label htmlFor="name">姓名</label>
-                    <input type="text" className="form-control" id="name" />
-                  </div>
-                  <div className="form-group  field--not-empty">
-                    <label htmlFor="username">電子郵件</label>
-                    <input type="email" className="form-control" id="username" />
-                  </div>
-                  <div className="form-group   field--not-empty">
-                    <label htmlFor="password">密碼</label>
-                    <input type="password" className="form-control" id="password" />
-                  </div>
-                  <div className="form-group last mb-4 field--not-empty">
-                    <label htmlFor="passwordTwo">再次輸入密碼</label>
-                    <input type="password" className="form-control" id="passwordTwo" />
-                  </div>
 
-                  <input type="submit" value="Log In" className="btn btn-block btn-primary" />
+                <div className="form-group  first field--not-empty">
+                  <label htmlFor="name">姓名</label>
+                  <input type="text" className="form-control" id="name" />
+                </div>
+                <div className="form-group  field--not-empty">
+                  <label htmlFor="username">電子郵件</label>
+                  <input type="email" className="form-control" id="username" />
+                </div>
+                <div className="form-group   field--not-empty">
+                  <label htmlFor="password">密碼</label>
+                  <input type="password" className="form-control" id="password" />
+                </div>
+                <div className="form-group last mb-4 field--not-empty">
+                  <label htmlFor="passwordTwo">再次輸入密碼</label>
+                  <input type="password" className="form-control" id="passwordTwo" />
+                </div>
 
-                  <span className="d-block text-left my-4 text-muted">&mdash; or register with &mdash;</span>
+                <input
+                  type="submit"
+                  value="Regist"
+                  className="btn btn-block btn-primary"
+                />
 
-                  <div className="social-login">
-                    <a href="#" className="facebook pr-3">
-                      <span className="icon-facebook mr-3">
-                        <Facebook />
-                      </span>
-                    </a>
-                    <a href="#" className="google pr-3">
-                      <span className="icon-google mr-3">
-                        <Google />
-                      </span>
-                    </a>
-                  </div>
-                </form>
+                <span className="d-block text-left my-4 text-muted">&mdash; or register with &mdash;</span>
+
+                <div className="social-login">
+                  <a href="#" className="facebook pr-3">
+                    <span className="icon-facebook mr-3">
+                      <Facebook />
+                    </span>
+                  </a>
+                  <a href="#" className="google pr-3">
+                    <span className="icon-google mr-3">
+                      <Google />
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
