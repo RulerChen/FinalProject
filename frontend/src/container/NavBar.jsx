@@ -8,7 +8,13 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand">
-          <img src={logo} alt="" width="30" height="30" className="d-inline-block align-text-top" />
+          <img
+            src={logo}
+            alt=""
+            width="30"
+            height="30"
+            className="d-inline-block align-text-top"
+          />
           8592 寶物交易網
         </a>
 
@@ -32,46 +38,58 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                className="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 線上遊戲
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a className="dropdown-item" href="">
-                    新楓之谷
-                  </a>
+                  <div className="dropdown-item" href="">
+                    <Link to="/store/新楓之谷">新楓之谷</Link>
+                  </div>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="">
-                    英雄聯盟LOL
-                  </a>
+                  <div className="dropdown-item" href="">
+                    <Link to="/store/英雄聯盟LOL">英雄聯盟LOL</Link>
+                  </div>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="">
-                    魔獸世界
-                  </a>
+                  <div className="dropdown-item" href="">
+                    <Link to="/store/魔獸世界">魔獸世界</Link>
+                  </div>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                className="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 手機遊戲
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a className="dropdown-item" href="">
-                    Garena 傳說對決
-                  </a>
+                  <div className="dropdown-item" href="">
+                    <Link to="/store/Garena傳說對決">Garena 傳說對決</Link>
+                  </div>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="">
-                    神魔之塔
-                  </a>
+                  <div className="dropdown-item" href="">
+                    <Link to="/store/神魔之塔">神魔之塔</Link>
+                  </div>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="">
-                    怪物彈珠
-                  </a>
+                <div className="dropdown-item" href="">
+                    <Link to="/store/怪物彈珠">怪物彈珠</Link>
+                  </div>
                 </li>
               </ul>
             </li>

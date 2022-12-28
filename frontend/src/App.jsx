@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import NavBar from "./components/NavBar";
-import HomePage from "./components/HomePage";
-import About from "./components/About";
-import LogIn from "./components/LogIn";
-import Register from "./components/Register";
-
+import NavBar from "./container/NavBar";
+import HomePage from "./container/HomePage";
+import About from "./container/About";
+import LogIn from "./container/LogIn";
+import Register from "./container/Register";
+import Store from "./container/Store";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -18,6 +18,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/store/:id" element={<Store/>}/>
       </Routes>
     </Router>
   );
