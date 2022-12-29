@@ -1,13 +1,13 @@
 import React from 'react';
-import { AndroidOutlined, AppleOutlined } from '@ant-design/icons';
+import { UserOutlined, PayCircleOutlined } from '@ant-design/icons';
 import { Tabs } from 'antd';
 
-const arr = ["遊戲幣", "帳號"];
+const arr = ["遊戲幣", "帳號", "點數卡"];
 const Tab = (id) => (
   //id = 英雄聯盟LOL, ...
   <Tabs
     defaultActiveKey="2"
-    items={[AppleOutlined, AndroidOutlined].map((Icon, i) => {
+    items={[PayCircleOutlined, UserOutlined].map((Icon, i) => {
       return {
         label: (
           <span>

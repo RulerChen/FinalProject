@@ -4,6 +4,8 @@ import Tabs from "./Tab";
 const Card = (id) => {
   //get uel from db
   //id = 英雄聯盟LOL, ...
+  //schema Card: id, text, url
+  
   return (
     <div className="container">
       <Tabs id={id}/>

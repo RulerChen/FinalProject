@@ -3,6 +3,30 @@ import cors from "cors";
 import db from "./db.js";
 import dotenv from "dotenv-defaults";
 import path from "path";
+//graphql
+import { createServer } from "http";
+import { CardModel  } from "./models/card.js";
+import * as fs from "fs";
+import { createSchema, createYoga } from "graphql-yoga";
+import Query from "./resolvers/Query.js";
+import Mutation from "./resolvers/Mutation.js";
+const yoga = createYoga({
+  schema: createSchema({
+    typeDefs: fs.readFileSync("./src/schema.graphql", "utf-8"),
+    resolvers: {
+      Query,
+      Mutation,
+    },
+  }),
+  context: {
+    CardModel,
+  },
+});
+//http://finalproject-u4ak.onrender.com/
+db.connect();
+const server = createServer(yoga);
+server.listen(5000, () => console.log(`listening on port http://localhost:${5000}/graphql!`));
+//*下面沒動*
 
 dotenv.config();
 
