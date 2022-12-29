@@ -3,8 +3,8 @@ type Query {
 }
 
 type Mutation {
-    createCard(id: String!, url: String, text: String!, tag: String): Card!
-}   
+  createCard(id: String!, url: String, text: String!, tag: String): Card!
+}
 
 type Card {
   id: String!
