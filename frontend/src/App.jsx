@@ -11,6 +11,7 @@ import Register from "./containers/Register";
 import Store from "./containers/Store";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import AddCard from "./containers/AddCard";
 
 const App = () => {
   const { signedIn } = useHook();
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/store/:id" element={<Store />} />
+        <Route path="/addCard" element={<AddCard/>} />
       </Routes>
     </Router>
   );

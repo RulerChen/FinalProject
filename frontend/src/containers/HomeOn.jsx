@@ -33,7 +33,7 @@ const HomeOn = () => {
               <div className="carousel-caption text-start">
                 <h1>英雄聯盟 LOL</h1>
                 <p>全球第一多人連線遊戲，挑戰你的電子競技夢想！</p>
-                <Link to="/store/英雄聯盟 LOL" className="btn btn-primary btn-lg" type="button">
+                <Link to="/store/lol" className="btn btn-primary btn-lg" type="button">
                   了解更多
                 </Link>
               </div>
@@ -45,7 +45,7 @@ const HomeOn = () => {
               <div className="carousel-caption">
                 <h1>Valorant</h1>
                 <p>以角色為核心的5對5戰略射擊遊戲</p>
-                <Link to="/store/Valorant" className="btn btn-primary btn-lg" type="button">
+                <Link to="/store/valorant" className="btn btn-primary btn-lg" type="button">
                   了解更多
                 </Link>
               </div>
@@ -57,7 +57,7 @@ const HomeOn = () => {
               <div className="carousel-caption text-end">
                 <h1>Garena 傳說對決</h1>
                 <p>Garena 首款MOBA 競技手遊。讓你隨時開團不受拘束，任何時候想玩就玩，即刻創造傳說、來場頂尖對決！</p>
-                <Link to="/store/Garena 傳說對決" className="btn btn-primary btn-lg" type="button">
+                <Link to="/store/aov" className="btn btn-primary btn-lg" type="button">
                   了解更多
                 </Link>
               </div>

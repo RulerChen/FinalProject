@@ -1,24 +1,32 @@
 import React from "react";
-import { UserOutlined, PayCircleOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  PayCircleOutlined,
+  CreditCardOutlined,
+} from "@ant-design/icons";
 import { Tabs } from "antd";
 
-const arr = ["遊戲幣", "帳號", "點數卡"];
-const Tab = (id) => (
-  //id = 英雄聯盟LOL, ...
+const Tab = ({ id, tabArray, tabState, setTabState }) => (
+  //id = lol, ...
   <Tabs
-    defaultActiveKey="2"
-    items={[PayCircleOutlined, UserOutlined].map((Icon, i) => {
-      return {
-        label: (
-          <span>
-            <Icon />
-            {arr[i]}
-          </span>
-        ),
-        key: i,
-        // children: `Tab ${i}`,
-      };
-    })}
+    defaultActiveKey={tabState}
+    onTabClick={(key) => {
+      setTabState(key);
+    }}
+    items={[PayCircleOutlined, UserOutlined, CreditCardOutlined].map(
+      (Icon, i) => {
+        return {
+          label: (
+            <span>
+              <Icon />
+              {tabArray[i]}
+            </span>
+          ),
+          key: i,
+          // children: `Tab ${i}`,
+        };
+      }
+    )}
   />
 );
 export default Tab;

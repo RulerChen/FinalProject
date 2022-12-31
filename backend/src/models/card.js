@@ -7,6 +7,8 @@ const cardSchema = new Schema({
   url: { type: String },
   text: { type: String },
   tag: { type: String },
+  price: {type: Number, required: [true, "price is required."]},
+  details : {type: String}
 });
 const CardModel = mongoose.model("Card", cardSchema);
 
