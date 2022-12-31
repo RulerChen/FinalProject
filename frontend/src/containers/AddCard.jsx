@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import { Form, Input, Button, Radio, InputNumber, Upload, message } from "antd";
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
-import axios from "axios";
-
+import instance from "../api.jsx";
 const { TextArea } = Input;
 const AddCard = () => {
-  const instance = axios.create({
-    baseURL: `http://localhost:4000/`,
-  });
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const a = 23;
     const {
       data: { message },
-    } = await instance.post("/api/cards", {"data": values});
+    } = await instance.post("/cards", {"data": values});
     console.log(message);
   };
 

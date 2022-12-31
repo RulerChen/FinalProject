@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/image", async (req, res) => {
-  console.log("here");
+  // console.log("here");
   res.send({
     status: "done",
   });
