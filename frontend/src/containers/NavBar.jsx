@@ -1,20 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useHook } from "../hooks/useHook";
+
 import logo from "../pics/logo.png";
 
 const NavBar = () => {
+  const { signedIn } = useHook();
+  const onlineGame = ["新楓之谷", "英雄聯盟LOL", "Valorant"];
+  const mobileGame = ["Garena傳說對決", "神魔之塔", "怪物彈珠"];
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand">
-          <img
-            src={logo}
-            alt=""
-            width="30"
-            height="30"
-            className="d-inline-block align-text-top"
-          />
+          <img src={logo} alt="" width="30" height="30" className="d-inline-block align-text-top" />
           8592 寶物交易網
         </a>
 
@@ -38,59 +38,31 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 線上遊戲
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <div className="dropdown-item" href="">
-                    <Link to="/store/新楓之谷">新楓之谷</Link>
-                  </div>
-                </li>
-                <li>
-                  <div className="dropdown-item" href="">
-                    <Link to="/store/英雄聯盟LOL">英雄聯盟LOL</Link>
-                  </div>
-                </li>
-                <li>
-                  <div className="dropdown-item" href="">
-                    <Link to="/store/魔獸世界">魔獸世界</Link>
-                  </div>
-                </li>
+                {onlineGame.map((e) => (
+                  <li key={e}>
+                    <Link to={`/store/${e}`} className="dropdown-item">
+                      {e}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 手機遊戲
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <div className="dropdown-item" href="">
-                    <Link to="/store/Garena傳說對決">Garena 傳說對決</Link>
-                  </div>
-                </li>
-                <li>
-                  <div className="dropdown-item" href="">
-                    <Link to="/store/神魔之塔">神魔之塔</Link>
-                  </div>
-                </li>
-                <li>
-                <div className="dropdown-item" href="">
-                    <Link to="/store/怪物彈珠">怪物彈珠</Link>
-                  </div>
-                </li>
+                {mobileGame.map((e) => (
+                  <li key={e}>
+                    <Link to={`/store/${e}`} className="dropdown-item">
+                      {e}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </li>
             <li className="nav-item">

@@ -5,7 +5,7 @@ const Store = () => {
   const { id } = useParams();
   return (
     <>
-      <Card id = {id}/>
+      <Card id={id} />
     </>
   );
 };

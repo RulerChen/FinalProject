@@ -22,18 +22,8 @@ const HomeOn = () => {
             aria-current="true"
             aria-label="Slide 1"
           ></button>
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="2000">
@@ -42,9 +32,9 @@ const HomeOn = () => {
               <div className="carousel-caption text-start">
                 <h1>英雄聯盟 LOL</h1>
                 <p>全球第一多人連線遊戲，挑戰你的電子競技夢想！</p>
-                    <Link to="/store/英雄聯盟 LOL" className="btn btn-primary btn-lg" type="button">
-                        了解更多
-                    </Link>
+                <Link to="/store/英雄聯盟 LOL" className="btn btn-primary btn-lg" type="button">
+                  了解更多
+                </Link>
               </div>
             </div>
           </div>
@@ -54,9 +44,9 @@ const HomeOn = () => {
               <div className="carousel-caption">
                 <h1>Valorant</h1>
                 <p>以角色為核心的5對5戰略射擊遊戲</p>
-                    <Link to="/store/Valorant" className="btn btn-primary btn-lg" type="button">
-                    了解更多
-                  </Link>
+                <Link to="/store/Valorant" className="btn btn-primary btn-lg" type="button">
+                  了解更多
+                </Link>
               </div>
             </div>
           </div>
@@ -65,39 +55,20 @@ const HomeOn = () => {
             <div className="container">
               <div className="carousel-caption text-end">
                 <h1>Garena 傳說對決</h1>
-                <p>
-                  Garena 首款MOBA
-                  競技手遊。讓你隨時開團不受拘束，任何時候想玩就玩，即刻創造傳說、來場頂尖對決！
-                </p>
-                  <Link to="/store/Garena 傳說對決" className="btn btn-primary btn-lg" type="button">
-                    了解更多
-                  </Link>
+                <p>Garena 首款MOBA 競技手遊。讓你隨時開團不受拘束，任何時候想玩就玩，即刻創造傳說、來場頂尖對決！</p>
+                <Link to="/store/Garena 傳說對決" className="btn btn-primary btn-lg" type="button">
+                  了解更多
+                </Link>
               </div>
             </div>
           </div>
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
+        <button className="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
         </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
+        <button className="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
         </button>
       </div>
@@ -105,17 +76,9 @@ const HomeOn = () => {
       <div className="container marketing">
         <div className="row">
           <div className="col-lg-4">
-            <img
-              src={pic1}
-              alt=""
-              width="140"
-              height="140"
-              className="bd-placeholder-img rounded-circle"
-            />
+            <img src={pic1} alt="" width="140" height="140" className="bd-placeholder-img rounded-circle" />
             <h2 className="fw-normal">安全</h2>
-            <p>
-              8592 交易網可以為您提供安全的交易環境，讓您不用擔心資安外洩問題
-            </p>
+            <p>8592 交易網可以為您提供安全的交易環境，讓您不用擔心資安外洩問題</p>
             <p>
               <a className="btn btn-secondary" href="#">
                 關於我們 &raquo;
@@ -123,13 +86,7 @@ const HomeOn = () => {
             </p>
           </div>
           <div className="col-lg-4">
-            <img
-              src={pic2}
-              alt=""
-              width="140"
-              height="140"
-              className="bd-placeholder-img rounded-circle"
-            />
+            <img src={pic2} alt="" width="140" height="140" className="bd-placeholder-img rounded-circle" />
             <h2 className="fw-normal">簡潔</h2>
             <p>網站的外觀由 Bootstrap 和 React 打造而成，不含多餘廣告</p>
             <p>
@@ -139,13 +96,7 @@ const HomeOn = () => {
             </p>
           </div>
           <div className="col-lg-4">
-            <img
-              src={pic3}
-              alt=""
-              width="140"
-              height="140"
-              className="bd-placeholder-img rounded-circle"
-            />
+            <img src={pic3} alt="" width="140" height="140" className="bd-placeholder-img rounded-circle" />
             <h2 className="fw-normal">方便</h2>
             <p>網站操作設計直觀，不需任何多餘操作即可購買及上架所需商品</p>
             <p>

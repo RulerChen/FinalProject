@@ -40,11 +40,7 @@ const Register = () => {
                   <input type="password" className="form-control" id="passwordTwo" />
                 </div>
 
-                <input
-                  type="submit"
-                  value="Regist"
-                  className="btn btn-block btn-primary"
-                />
+                <input type="submit" value="Regist" className="btn btn-block btn-primary" />
 
                 <span className="d-block text-left my-4 text-muted">&mdash; or register with &mdash;</span>
 
