@@ -1,10 +1,10 @@
 import React from "react";
-
-import { useHook } from "../hooks/useHook";
-import img from "../pics/logIn.svg";
 import { Google, Facebook } from "react-bootstrap-icons";
 
+import { useHook } from "../hooks/useHook";
+
 import "../css/register.css";
+import img from "../pics/logIn.svg";
 
 const LogIn = () => {
   const { setSignedIn } = useHook();

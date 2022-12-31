@@ -1,9 +1,9 @@
 import React from "react";
-
-import { useHook } from "../hooks/useHook";
-import img from "../pics/logIn.svg";
 import { Google, Facebook } from "react-bootstrap-icons";
 
+import { useHook } from "../hooks/useHook";
+
+import img from "../pics/logIn.svg";
 import "../css/register.css";
 
 const Register = () => {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "../css/carousel.css";
 
@@ -8,7 +9,7 @@ import bg3 from "../pics/bg3.jpg";
 import pic1 from "../pics/safe.svg";
 import pic2 from "../pics/simple.svg";
 import pic3 from "../pics/fast.svg";
-import { Link } from "react-router-dom";
+
 const HomeOn = () => {
   return (
     <main>
