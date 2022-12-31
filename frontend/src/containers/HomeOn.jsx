@@ -81,9 +81,9 @@ const HomeOn = () => {
             <h2 className="fw-normal">安全</h2>
             <p>8592 交易網可以為您提供安全的交易環境，讓您不用擔心資安外洩問題</p>
             <p>
-              <a className="btn btn-secondary" href="#">
+              <Link to="/about" className="btn btn-secondary">
                 關於我們 &raquo;
-              </a>
+              </Link>
             </p>
           </div>
           <div className="col-lg-4">
@@ -91,9 +91,9 @@ const HomeOn = () => {
             <h2 className="fw-normal">簡潔</h2>
             <p>網站的外觀由 Bootstrap 和 React 打造而成，不含多餘廣告</p>
             <p>
-              <a className="btn btn-secondary" href="#">
+              <Link to="/about" className="btn btn-secondary">
                 關於我們 &raquo;
-              </a>
+              </Link>
             </p>
           </div>
           <div className="col-lg-4">
@@ -101,9 +101,9 @@ const HomeOn = () => {
             <h2 className="fw-normal">方便</h2>
             <p>網站操作設計直觀，不需任何多餘操作即可購買及上架所需商品</p>
             <p>
-              <a className="btn btn-secondary" href="#">
+              <Link to="/about" className="btn btn-secondary">
                 關於我們 &raquo;
-              </a>
+              </Link>
             </p>
           </div>
         </div>
