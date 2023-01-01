@@ -1,20 +1,32 @@
-import { json, Router } from "express";
+import { Router } from "express";
 import { CardModel } from "../models/card.js";
 const router = Router();
 router.get("/", async (req, res) => {
-  let { id } = req.query;
-  console.log(`getting data of id=${id.id}`);
-  //id = {id: "lol"}
-  //id.id = "lol"
-  const cardData = await CardModel.find({ id: id.id });
+  let { game } = req.query.game;
+  console.log(game)
+  console.log(`getting data of game = ${game}`);
+  const cardData = await CardModel.find({game});
+  // console.log(cardData);
   res.send({
     cardData,
   });
 });
 
+
 router.post("/", async (req, res) => {
-  console.log(req.body)
-  res.send({message: "success"});
+  console.log(req.body);
+  const { data } = req.body;
+  console.log(data)
+  const newCard = new CardModel(data);
+  await newCard
+    .save()
+    .then(() => {
+      res.send({ message: "success" });
+    })
+    .catch((e) => {
+      console.log("error:" + e);
+    });
+  // res.send({message: "success"});
 });
 
 router.post("/image", async (req, res) => {
