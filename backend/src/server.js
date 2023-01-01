@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== "production") app.use(cors());
 db.connect();
 
 routes(app);
-// app.use("/api/cards", cardRoutes);
+
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, "../frontend", "build")));
