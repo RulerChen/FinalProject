@@ -2,10 +2,10 @@ import React from "react";
 import Card from "../components/Card";
 import { useParams } from "react-router-dom";
 const Store = () => {
-  const { id } = useParams();
+  const { game } = useParams();
   return (
     <>
-      <Card id={id} />
+      <Card game={game} />
     </>
   );
 };

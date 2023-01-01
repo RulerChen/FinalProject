@@ -2,24 +2,34 @@ import React, { useState } from "react";
 import { Form, Input, Button, Radio, InputNumber, Upload, message } from "antd";
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import instance from "../api.jsx";
 const { TextArea } = Input;
 const AddCard = () => {
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
+    const { game, category, price, image, title, intro, detail } = values;
+
     const {
       data: { message },
-    } = await instance.post("/cards", { data: values });
+    } = await instance.post("/cards", {
+      data: {
+        game,
+        category,
+        price,
+        url: image[0].thumbUrl,
+        title,
+        intro,
+        detail,
+      },
+    });
     console.log(message);
   };
 
   //image upload
   const [loading, setLoading] = useState(false);
   const [mainImageUrl, setMainImageUrl] = useState();
-  //   useEffect(()=>{
-  //     console.log(mainImageUrl);
-  //   },[mainImageUrl])
 
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -100,7 +110,7 @@ const AddCard = () => {
         <Form.Item
           label="上傳封面圖"
           valuePropName="fileList"
-          name={"picture"}
+          name={"image"}
           getValueFromEvent={(e) => {
             if (Array.isArray(e)) {
               return e;
@@ -131,6 +141,17 @@ const AddCard = () => {
         </Form.Item>
 
         <Form.Item
+          name={"title"}
+          label="標題"
+          rules={[
+            { required: true, message: "必填" },
+            { type: "string", min: 1, message: "123" },
+          ]}
+        >
+          <TextArea rows={1} />
+        </Form.Item>
+
+        <Form.Item
           name={"intro"}
           label="商品簡介"
           rules={[
@@ -140,9 +161,9 @@ const AddCard = () => {
         >
           <TextArea rows={3} />
         </Form.Item>
-        <Form.Item label="詳細商品內容" name={"detail"}>
+        {/* <Form.Item label="詳細商品內容" name={"detail"}>
           <TextArea rows={3} />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit
