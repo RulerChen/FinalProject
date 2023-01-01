@@ -5,7 +5,6 @@ const registerValidation = (data) => {
     username: Joi.string().min(1).max(10).required(),
     email: Joi.string().min(6).max(100).required().email(),
     password: Joi.string().min(6).max(255).required(),
-    point: Joi.number().min(0).required(),
   });
 
   return schema.validate(data);
@@ -19,4 +18,4 @@ const loginValidation = (data) => {
   return schema.validate(data);
 };
 
-export default { registerValidation, loginValidation };
+export { registerValidation, loginValidation };
