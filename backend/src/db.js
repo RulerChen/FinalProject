@@ -1,7 +1,5 @@
-import dotenv from "dotenv-defaults";
 import mongoose from "mongoose";
-
-dotenv.config();
+import "dotenv-defaults/config.js";
 
 export default {
   connect: () => {

@@ -30,12 +30,7 @@ const Card = (id) => {
 
   return (
     <div className="container">
-      <Tabs
-        id={id}
-        tabArray={tabArray}
-        activeKey={tabState}
-        setTabState={setTabState}
-      />
+      <Tabs id={id} tabArray={tabArray} activeKey={tabState} setTabState={setTabState} />
       <Link to="/addCard" className="nav-link">
         <button className="btn btn-primary btn-lg" type="button">
           上架商品
