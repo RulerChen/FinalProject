@@ -5,12 +5,14 @@ import axios from "../api";
 import Tabs from "./Tab";
 import { Link } from "react-router-dom";
 import lolImage from "../pics/bg1.jpg";
+import { Cursor } from "mongoose";
 // import valorantImage from "../pics/bg2.jpg"
 const tabArray = ["遊戲幣", "帳號", "點數卡"];
 const Card = (game) => {
   const [tabState, setTabState] = useState("0"); // tabArray[tabState] = current tag
   const [allCardData, setAllCardData] = useState([]); // all cards of that game
   const [cards, setCards] = useState([]); // rendering
+  const [mouseIn, setMouseIn] = useState(false);
   const handleQuery = async () => {
     const {
       data: { cardData },
@@ -20,7 +22,7 @@ const Card = (game) => {
       },
     });
     setAllCardData(cardData);
-    console.log(allCardData);//test
+    console.log(cardData); //test
     // setCards(cardData);
   };
   //tag or game changed, reselecting cards
@@ -32,11 +34,13 @@ const Card = (game) => {
         })
       );
     }
-  }, [tabState,allCardData]);
+  }, [tabState, allCardData]);
   //game changed, getting data from backend
   useEffect(() => {
     handleQuery();
   }, [game]);
+
+  const changePage = () => {};
   return (
     <div className="container">
       <Tabs
@@ -55,11 +59,24 @@ const Card = (game) => {
           <div className="col" key={index}>
             <div className="card">
               {/* todo: add default images to each game. */}
-              <img
-                src={item.url ? item.url : lolImage}
-                loading="lazy"
-                className="card-img-top"
-              />
+              <Link to={`/detail/${item._id}`}>
+                <img
+                  src={item.url ? item.url : lolImage}
+                  loading="lazy"
+                  className="card-img-top"
+                  onMouseEnter={() => {
+                    setMouseIn(true);
+                  }}
+                  onMouseLeave={() => {
+                    setMouseIn(false);
+                  }}
+                  style={
+                    mouseIn ? { cursor: "pointer" } : { cursor: "default" }
+                  }
+                  onClick={changePage}
+                />
+              </Link>
+
               <div className="card-body">
                 <h4>{"NT$ " + item.price}</h4>
                 <h5 className="card-title">
