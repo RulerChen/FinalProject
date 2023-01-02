@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import lolImage from "../pics/bg1.jpg";
 // import { Cursor } from "mongoose";
 // import valorantImage from "../pics/bg2.jpg"
-const tabArray = ["遊戲幣", "帳號", "點數卡"];
+const tabArray = ["帳號", "點數卡"];
 const Card = (game) => {
   const [tabState, setTabState] = useState("0"); // tabArray[tabState] = current tag
   const [allCardData, setAllCardData] = useState([]); // all cards of that game
@@ -43,12 +43,7 @@ const Card = (game) => {
   const changePage = () => {};
   return (
     <div className="container">
-      <Tabs
-        game={game}
-        tabArray={tabArray}
-        activeKey={tabState}
-        setTabState={setTabState}
-      />
+      <Tabs game={game} tabArray={tabArray} activeKey={tabState} setTabState={setTabState} />
       <Link to="/addCard" className="nav-link">
         <button className="btn btn-primary btn-lg" type="button">
           上架商品
@@ -59,7 +54,7 @@ const Card = (game) => {
           <div className="col" key={index}>
             <div className="card">
               {/* todo: add default images to each game. */}
-              <Link to={`/detail/${item._id}`}>
+              <Link to={`/detail/${item._id}`} state={item}>
                 <img
                   src={item.url ? item.url : lolImage}
                   loading="lazy"
@@ -70,18 +65,14 @@ const Card = (game) => {
                   onMouseLeave={() => {
                     setMouseIn(false);
                   }}
-                  style={
-                    mouseIn ? { cursor: "pointer" } : { cursor: "default" }
-                  }
+                  style={mouseIn ? { cursor: "pointer" } : { cursor: "default" }}
                   onClick={changePage}
                 />
               </Link>
 
               <div className="card-body">
                 <h4>{"NT$ " + item.price}</h4>
-                <h5 className="card-title">
-                  {`[${tabArray[tabState]}] ` + item.title}
-                </h5>
+                <h5 className="card-title">{`[${tabArray[tabState]}] ` + item.title}</h5>
                 <p className="card-text">{item.intro}</p>
               </div>
             </div>
