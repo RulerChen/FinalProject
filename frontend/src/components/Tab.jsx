@@ -1,7 +1,6 @@
 import React from "react";
 import {
   UserOutlined,
-  PayCircleOutlined,
   CreditCardOutlined,
 } from "@ant-design/icons";
 import { Tabs } from "antd";
@@ -13,7 +12,7 @@ const Tab = ({ id, tabArray, tabState, setTabState }) => (
     onTabClick={(key) => {
       setTabState(key);
     }}
-    items={[PayCircleOutlined, UserOutlined, CreditCardOutlined].map(
+    items={[UserOutlined, CreditCardOutlined].map(
       (Icon, i) => {
         return {
           label: (

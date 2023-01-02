@@ -1,15 +1,28 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Radio, InputNumber, Upload, message } from "antd";
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import instance from "../api.jsx";
+import { useHook } from "../hooks/useHook.jsx";
 const { TextArea } = Input;
 const AddCard = () => {
   const [form] = Form.useForm();
+  const { username, account } = useHook();
+  const [categoryState, setCategoryState] = useState("")
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
-    const { game, category, price, image, title, intro, detail } = values;
+    const {
+      game,
+      category,
+      price,
+      image,
+      title,
+      intro,
+      detail,
+      stock,
+      goodAccount,
+      goodPassport,
+      point,
+    } = values;
 
     const {
       data: { message },
@@ -18,10 +31,16 @@ const AddCard = () => {
         game,
         category,
         price,
-        url: image[0].thumbUrl,
+        url: image[0].thumbUrl,//todo: enable uploading without img
         title,
         intro,
         detail,
+        stock,
+        username, //seller's username
+        account, //seller's email
+        goodAccount, //good info
+        goodPassport, //good info
+        point,
       },
     });
     console.log(message);
@@ -78,7 +97,11 @@ const AddCard = () => {
         onFinish={onFinish}
       >
         {/* id,url,text,tag */}
-        <Form.Item label="遊戲類別" name={"game"} rules={[{ required: true, message: "必填" }]}>
+        <Form.Item
+          label="遊戲類別"
+          name={"game"}
+          rules={[{ required: true, message: "必填" }]}
+        >
           <Radio.Group>
             <Radio value="新楓之谷"> 新楓之谷 </Radio>
             <Radio value="英雄聯盟LOL"> 英雄聯盟LOL </Radio>
@@ -89,20 +112,67 @@ const AddCard = () => {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item label="商品類別" name={"category"} rules={[{ required: true, message: "必填" }]}>
-          <Radio.Group>
-            <Radio value="遊戲幣"> 遊戲幣 </Radio>
+        <Form.Item
+          label="商品類別"
+          name={"category"}
+          rules={[{ required: true, message: "請填寫商品類別!" }]}
+        >
+          <Radio.Group onChange={(e) => setCategoryState(e.target.value)}>
             <Radio value="帳號"> 帳號 </Radio>
             <Radio value="點數卡"> 點數卡 </Radio>
           </Radio.Group>
+        </Form.Item>
+
+        {categoryState === "點數卡" && (
+          <Form.Item
+            label="點數卡點數"
+            name={"point"}
+            rules={[
+              { required: true, message: "請填寫點數數量!" },
+              { type: "string", min: 1, message: "點數數量不可小於等於0!" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        )}
+
+        <Form.Item
+          label={`${categoryState}帳號`}
+          name={"goodAccount"}
+          rules={[
+            { required: true, message: `請填寫${categoryState}帳號` },
+            { type: "string", min: 1, message: `請填寫${categoryState}帳號` },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={`${categoryState}密碼`}
+          name={"goodPassport"}
+          rules={[
+            { required: true, message: `${categoryState}密碼` },
+            { type: "string", min: 1, message: `${categoryState}密碼` },
+          ]}
+        >
+          <Input />
         </Form.Item>
 
         <Form.Item
           label="定價"
           name={"price"}
           rules={[
+            { required: true, message: "請填寫定價!" },
+            { type: "integer", min: 0, message: "價格不得小於等於0!" },
+          ]}
+        >
+          <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="庫存"
+          name={"stock"}
+          rules={[
             { required: true, message: "必填" },
-            { type: "integer", min: 0, message: "價格不得小於等於0" },
+            { type: "integer", min: 0, message: "庫存不得小於等於0" },
           ]}
         >
           <InputNumber />
@@ -145,7 +215,12 @@ const AddCard = () => {
           label="標題"
           rules={[
             { required: true, message: "必填" },
-            { type: "string", min: 1, message: "123" },
+            {
+              type: "string",
+              min: 1,
+              max: 15,
+              message: "請輸入1~15個字作為標題",
+            },
           ]}
         >
           <TextArea rows={1} />
@@ -161,9 +236,18 @@ const AddCard = () => {
         >
           <TextArea rows={3} />
         </Form.Item>
-        {/* <Form.Item label="詳細商品內容" name={"detail"}>
+
+        <Form.Item
+          label="詳細商品內容"
+          name={"detail"}
+          rules={[
+            { required: true, message: "必填" },
+            { type: "string", min: 1, message: "123" },
+          ]}
+        >
           <TextArea rows={3} />
-        </Form.Item> */}
+        </Form.Item>
+
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit
