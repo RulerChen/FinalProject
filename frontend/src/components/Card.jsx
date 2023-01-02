@@ -5,7 +5,7 @@ import axios from "../api";
 import Tabs from "./Tab";
 import { Link } from "react-router-dom";
 import lolImage from "../pics/bg1.jpg";
-import { Cursor } from "mongoose";
+// import { Cursor } from "mongoose";
 // import valorantImage from "../pics/bg2.jpg"
 const tabArray = ["遊戲幣", "帳號", "點數卡"];
 const Card = (game) => {

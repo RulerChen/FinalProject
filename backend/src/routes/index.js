@@ -10,8 +10,8 @@ function main(app) {
   app.post("/api/cards", cardRoute.addGameCard);
   app.post("/api/cards/image", cardRoute.uploadImage);
 
-  app.post("/api/register", userRoute.register);
-  app.post("/api/login", userRoute.login);
+  app.post("/api/user/register", userRoute.register);
+  app.post("/api/user/login", userRoute.login);
 }
 
 export default main;

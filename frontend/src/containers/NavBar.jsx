@@ -1,15 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 
 import { useHook } from "../hooks/useHook";
+import AuthService from "../services/auth.service";
 
 import logo from "../pics/logo.png";
 
 const NavBar = () => {
-  const { signedIn } = useHook();
+  const { signedIn, setSignedIn, username, displayStatus } = useHook();
   const onlineGame = ["新楓之谷", "英雄聯盟LOL", "Valorant"];
   const mobileGame = ["Garena傳說對決", "神魔之塔", "怪物彈珠"];
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    setSignedIn(false);
+    AuthService.logout();
+    displayStatus({ type: "success", msg: "Logout succeeds" });
+    navigate("/");
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -72,18 +81,43 @@ const NavBar = () => {
             </li>
           </ul>
 
-          <ul className="navbar-nav me-2 mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link to="/register" className="nav-link">
-                註冊
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                登入
-              </Link>
-            </li>
-          </ul>
+          {signedIn ? (
+            <ul className="navbar-nav mb-lg-0 mb-2" style={{ marginRight: "10rem" }}>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {username}
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <Link to="\" className="dropdown-item">
+                      個人資料
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <div className="dropdown-item" onClick={handleLogout}>
+                      登出
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          ) : (
+            <ul className="navbar-nav mb-2 mb-lg-0" style={{ marginRight: "10rem" }}>
+              <li className="nav-item">
+                <Link to="/register" className="nav-link">
+                  註冊
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  登入
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>

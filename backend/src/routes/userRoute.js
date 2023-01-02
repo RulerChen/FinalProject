@@ -6,7 +6,8 @@ import "dotenv-defaults/config.js";
 export async function register(req, res) {
   console.log("Register");
   const { error } = registerValidation(req.body);
-  if (error) res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send(error.details[0].message);
+
   const emailExist = await UserModel.findOne({ email: req.body.email });
   if (emailExist) return res.status(400).send("Email has already been registered.");
 

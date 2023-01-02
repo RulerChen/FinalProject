@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Google, Facebook } from "react-bootstrap-icons";
 
 import { useHook } from "../hooks/useHook";
+import AuthService from "../services/auth.service";
 
-import "../css/register.css";
 import img from "../pics/logIn.svg";
 
-const LogIn = () => {
-  const { setSignedIn } = useHook();
+import "../css/register.css";
 
+const LogIn = () => {
+  const { setSignedIn, setUsername, setAccount, setPoint, displayStatus } = useHook();
+  const [tempAccount, setTempAccount] = useState("");
+  const [tempPassword, setTempPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    AuthService.login(tempAccount, tempPassword)
+      .then((response) => {
+        // console.log(response.data);
+        if (response.data.token) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
+        displayStatus({ type: "success", msg: "Login succeeds" });
+        setUsername(response.data.user.username);
+        setAccount(response.data.user.email);
+        setPoint(response.data.user.point);
+        // setCurrentUser(AuthService.getCurrentUser());
+        setSignedIn(true);
+        navigate("/");
+      })
+      .catch((error) => {
+        // console.log(error.response);
+        displayStatus({ type: "error", msg: error.response.data });
+      });
+  };
   return (
     <div className="content">
       <div className="container">
@@ -25,21 +51,28 @@ const LogIn = () => {
                 </div>
                 <div className="form-group first field--not-empty">
                   <label htmlFor="username">帳號</label>
-                  <input type="text" className="form-control" id="username" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="username"
+                    onChange={(e) => {
+                      setTempAccount(e.target.value);
+                    }}
+                  />
                 </div>
                 <div className="form-group last mb-4 field--not-empty">
                   <label htmlFor="password">密碼</label>
-                  <input type="password" className="form-control" id="password" />
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    onChange={(e) => {
+                      setTempPassword(e.target.value);
+                    }}
+                  />
                 </div>
 
-                <input
-                  type="submit"
-                  value="Log In"
-                  className="btn btn-block btn-primary"
-                  onClick={(e) => {
-                    setSignedIn(true);
-                  }}
-                />
+                <input type="submit" value="Log In" className="btn btn-block btn-primary" onClick={handleLogin} />
 
                 <span className="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
 
