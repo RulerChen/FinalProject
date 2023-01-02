@@ -89,8 +89,13 @@ const NavBar = () => {
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <Link to="/" className="dropdown-item">
+                    <Link to="/profile" className="dropdown-item">
                       個人資料
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/addCard" className="dropdown-item">
+                      刊登商品
                     </Link>
                   </li>
                   <li>

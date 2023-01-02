@@ -1,5 +1,7 @@
-import { useState, createContext, useContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { message } from "antd";
+
+import AuthService from "../services/auth.service";
 
 const HookContext = createContext({
   signedIn: false,
@@ -13,6 +15,16 @@ const HookProvider = (props) => {
   const [username, setUsername] = useState("");
   const [account, setAccount] = useState("");
   const [point, setPoint] = useState(0);
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setSignedIn(true);
+      setUsername(user.user.username);
+      setAccount(user.user.email);
+      setPoint(user.user.point);
+    }
+  }, []);
 
   const displayStatus = (s) => {
     if (s.msg) {
