@@ -18,20 +18,17 @@ const LogIn = () => {
   const handleLogin = () => {
     AuthService.login(tempAccount, tempPassword)
       .then((response) => {
-        // console.log(response.data);
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
         displayStatus({ type: "success", msg: "Login succeeds" });
-        setUsername(response.data.user.username);
-        setAccount(response.data.user.email);
-        setPoint(response.data.user.point);
-        // setCurrentUser(AuthService.getCurrentUser());
+        setUsername(AuthService.getCurrentUser().user.username);
+        setAccount(AuthService.getCurrentUser().user.email);
+        setPoint(AuthService.getCurrentUser().user.point);
         setSignedIn(true);
         navigate("/");
       })
       .catch((error) => {
-        // console.log(error.response);
         displayStatus({ type: "error", msg: error.response.data });
       });
   };
