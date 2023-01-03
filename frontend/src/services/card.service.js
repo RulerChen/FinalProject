@@ -4,6 +4,23 @@ class CardService {
   findGameCard(game) {
     return axios.get("/cards", { params: { game } });
   }
+  findHistory(account) {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+    return axios.get(
+      "/cards/history",
+      { params: { account } },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+  }
   addGameCard(game, category, price, url, title, intro, detail, stock, username, account, goodAccount, goodPassport, cardPoint) {
     let token;
     if (localStorage.getItem("user")) {
@@ -12,7 +29,7 @@ class CardService {
       token = "";
     }
     return axios.post(
-      "/cards",
+      "/cards/add",
       {
         game,
         category,

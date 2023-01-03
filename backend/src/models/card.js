@@ -15,8 +15,8 @@ const cardSchema = new Schema({
   account: { type: String, required: [true, "account is required."] }, //賣家gmail
   goodAccount: { type: String, required: [true, "goodAccount is required."] }, //商品帳號
   goodPassport: { type: String, required: [true, "goodPassport is required."] }, //商品密碼
-  cardPoint : { type: Number}, //點數卡點數數量
-  buyer: {type: String, default: 'null'} // 買家
+  cardPoint: { type: Number }, //點數卡點數數量
+  buyer: { type: String, default: "null" }, // 買家
 });
 const CardModel = mongoose.model("Card", cardSchema);
 

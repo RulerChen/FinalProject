@@ -1,26 +1,15 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "../api";
+
 import { useHook } from "../hooks/useHook";
+import AuthService from "../services/auth.service";
+
 const Pay = () => {
   const data = useLocation().state;
   const navigate = useNavigate();
   const { point, setPoint } = useHook();
   console.log(data);
-  const {
-    title,
-    price,
-    // detail,
-    // intro,
-    // url,
-    // stock,
-    username,
-    account,
-    category,
-    game,
-    cardPoint,
-    _id,
-  } = data.mainData;
+  const { title, price, username, account, category, game, cardPoint, _id } = data.mainData;
   // const { number } = data;
   const feeRatio = 0.01;
   const buyerPay = price + Math.floor(feeRatio * price);
@@ -31,20 +20,13 @@ const Pay = () => {
     if (point < price + Math.floor(feeRatio * price)) {
       console.log("餘額不足");
     } else {
-      const { data } = await axios.put("/user/pay", {
-        account,
-        buyerPay,
-        sellerGain,
-        fee,
-        _id,
-      });
-      console.log(data);
-      // const {goodAccount, goodPassport} = data;
-      const BuyerPointLeft = data.buyer.point;
-      const { goodAccount, goodPassport } = data;
-      setPoint(BuyerPointLeft);
-      navigate("/payment_completed", {
-        state: { point: BuyerPointLeft, goodAccount, goodPassport },
+      await AuthService.pay(account, buyerPay, sellerGain, fee, _id).then((response) => {
+        const BuyerPointLeft = response.data.buyer.point;
+        const { goodAccount, goodPassport } = response.data;
+        setPoint(BuyerPointLeft);
+        navigate("/payment_completed", {
+          state: { point: BuyerPointLeft, goodAccount, goodPassport },
+        });
       });
     }
   };
@@ -63,13 +45,8 @@ const Pay = () => {
                 </div>
                 <h4 className="text-success">{`NT$ ${buyerPay}`}</h4>
                 <h4>{title}</h4>
-                {category === "點數卡" && (
-                  <h4>{`${game}點數卡 ${cardPoint} 點`}</h4>
-                )}
-                <div
-                  className="rounded d-flex"
-                  style={{ backgroundColor: "#f8f9fa" }}
-                ></div>
+                {category === "點數卡" && <h4>{`${game}點數卡 ${cardPoint} 點`}</h4>}
+                <div className="rounded d-flex" style={{ backgroundColor: "#f8f9fa" }}></div>
                 <hr />
                 <div className="p-2">
                   賣家: {username}&emsp;&emsp;&emsp;&emsp;gmail: {account}
@@ -86,27 +63,16 @@ const Pay = () => {
                     <div className="ms-auto"></div>
                   </div>
                   <br />
-                  <input
-                    type="button"
-                    defaultValue="付款"
-                    className="btn btn-primary btn-block btn-lg"
-                    onClick={payHandler}
-                  />
+                  <input type="button" defaultValue="付款" className="btn btn-primary btn-block btn-lg" onClick={payHandler} />
                 </div>
               </div>
               <div className="col-md-5 col-xl-4 offset-xl-1">
                 <div className="py-4 d-flex justify-content-end">
-                  <button
-                    className="btn btn-secondary btn-sm active"
-                    onClick={() => navigate(-1)}
-                  >
+                  <button className="btn btn-secondary btn-sm active" onClick={() => navigate(-1)}>
                     取消並回前頁
                   </button>
                 </div>
-                <div
-                  className="rounded d-flex flex-column p-2"
-                  style={{ backgroundColor: "#f8f9fa" }}
-                >
+                <div className="rounded d-flex flex-column p-2" style={{ backgroundColor: "#f8f9fa" }}>
                   <div className="p-2 me-3">
                     <h4>訂單</h4>
                   </div>

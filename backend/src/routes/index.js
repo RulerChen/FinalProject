@@ -7,13 +7,13 @@ passportFn(passport);
 
 function main(app) {
   app.get("/api/cards", cardRoute.findGameCard);
-  app.post("/api/cards", cardRoute.addGameCard);
+  app.get("/api/cards/history", cardRoute.getHistory);
+  app.post("/api/cards/add", passport.authenticate("jwt", { session: false }), cardRoute.addGameCard);
   app.post("/api/cards/image", cardRoute.uploadImage);
 
   app.post("/api/user/register", userRoute.register);
   app.post("/api/user/login", userRoute.login);
-  app.put("/api/user/pay", userRoute.pay);
-
+  app.put("/api/user/pay", passport.authenticate("jwt", { session: false }), userRoute.pay);
 }
 
 export default main;

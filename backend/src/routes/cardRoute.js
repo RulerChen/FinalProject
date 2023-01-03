@@ -23,6 +23,12 @@ export async function addGameCard(req, res) {
   // res.send({message: "success"});
 }
 
+export async function getHistory(req, res) {
+  const buy = await CardModel.find({ buyer: req.query.account });
+  const sell = await CardModel.find({ account: req.query.account });
+  res.send({ buy, sell });
+}
+
 // check upload image
 export async function uploadImage(req, res) {
   // console.log("here");

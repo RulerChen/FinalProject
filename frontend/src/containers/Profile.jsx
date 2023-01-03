@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useHook } from "../hooks/useHook";
 import { UserOutlined, MailOutlined, KeyOutlined, PoundCircleOutlined, ShoppingCartOutlined, CrownOutlined } from "@ant-design/icons";
+
+import { useHook } from "../hooks/useHook";
+import CardService from "../services/card.service";
 
 const Profile = () => {
   const { username, account, point } = useHook();
-  const [merchandise, setMerchandise] = useState([]);
-  useEffect(() => {}, []);
+  const [goodbuy, setGoodbuy] = useState([]);
+  const [goodsell, setGoodsell] = useState([]);
+
+  useEffect(() => {
+    CardService.findHistory(account).then((response) => {
+      const { buy, sell } = response.data;
+      setGoodbuy(buy);
+      setGoodsell(sell);
+    });
+  });
+
   return (
     <div>
       <main className="container">
@@ -63,16 +74,34 @@ const Profile = () => {
 
         <div className="my-3 p-3 bg-light rounded shadow-sm">
           <h6 className="border-bottom pb-2 mb-0">購買及刊登紀錄</h6>
-          <div className="d-flex text-muted pt-3">
-            <ShoppingCartOutlined className="me-3" style={{ fontSize: "2rem" }} />
-            <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
-              <div className="d-flex justify-content-between">
-                <strong className="text-gray-dark">商品名稱</strong>
-                <Link to="#">View</Link>
+          {goodsell.map((card, index) => {
+            return (
+              <div className="d-flex text-muted pt-3" key={index}>
+                <ShoppingCartOutlined className="me-3" style={{ fontSize: "2rem" }} />
+                <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
+                  <div className="d-flex justify-content-between">
+                    <strong className="text-gray-dark">{card.title}</strong>
+                    <Link to="#">View</Link>
+                  </div>
+                  <span className="d-block">seller</span>
+                </div>
               </div>
-              <span className="d-block">seller or buyer</span>
-            </div>
-          </div>
+            );
+          })}
+          {goodbuy.map((card, index) => {
+            return (
+              <div className="d-flex text-muted pt-3" key={index}>
+                <ShoppingCartOutlined className="me-3" style={{ fontSize: "2rem" }} />
+                <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
+                  <div className="d-flex justify-content-between">
+                    <strong className="text-gray-dark">{card.title}</strong>
+                    <Link to="#">View</Link>
+                  </div>
+                  <span className="d-block">buy</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </main>
     </div>

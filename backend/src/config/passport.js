@@ -1,6 +1,9 @@
-import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
+import passportJwt from "passport-jwt";
 import { UserModel } from "../models/user.js";
 import "dotenv-defaults/config.js";
+
+const JwtStrategy = passportJwt.Strategy;
+const ExtractJwt = passportJwt.ExtractJwt;
 
 export default function (passport) {
   let opts = {};

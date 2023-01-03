@@ -17,6 +17,29 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
   }
+  pay(account, buyerPay, sellerGain, fee, _id) {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+    return axios.put(
+      "/user/pay",
+      {
+        account,
+        buyerPay,
+        sellerGain,
+        fee,
+        _id,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+  }
 }
 
 export default new AuthService();
