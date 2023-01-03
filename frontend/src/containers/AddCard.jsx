@@ -1,37 +1,37 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Radio, InputNumber, Upload, message } from "antd";
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
-import instance from "../api.jsx";
+
 import { useHook } from "../hooks/useHook.jsx";
+import CardService from "../services/card.service.js";
+
 const { TextArea } = Input;
 const AddCard = () => {
   const [form] = Form.useForm();
-  const { username, account } = useHook();
+  const { username, account, displayStatus } = useHook();
   const [categoryState, setCategoryState] = useState("");
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const { game, category, price, image, title, intro, detail, stock, goodAccount, goodPassport, point } = values;
-
-    const {
-      data: { message },
-    } = await instance.post("/cards", {
-      data: {
-        game,
-        category,
-        price,
-        url: image[0].thumbUrl, //todo: enable uploading without img
-        title,
-        intro,
-        detail,
-        stock,
-        username, //seller's username
-        account, //seller's email
-        goodAccount, //good info
-        goodPassport, //good info
-        point,
-      },
+    const url = image[0].thumbUrl;
+    CardService.addGameCard(
+      game,
+      category,
+      price,
+      url, //todo: enable uploading without img
+      title,
+      intro,
+      detail,
+      stock,
+      username, //seller's username
+      account, //seller's email
+      goodAccount, //good info
+      goodPassport, //good info
+      point
+    ).then((response) => {
+      console.log(response);
+      displayStatus({ type: "success", msg: response.data.message });
     });
-    console.log(message);
   };
 
   //image upload

@@ -1,30 +1,30 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import axios from "../api";
-import Tabs from "./Tab";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import { useHook } from "../hooks/useHook";
+import Tabs from "./Tab";
+import CardService from "../services/card.service";
+
 import lolImage from "../pics/bg1.jpg";
-// import { Cursor } from "mongoose";
-// import valorantImage from "../pics/bg2.jpg"
+
 const tabArray = ["帳號", "點數卡"];
 const Card = (game) => {
+  const { displayStatus } = useHook();
   const [tabState, setTabState] = useState("0"); // tabArray[tabState] = current tag
   const [allCardData, setAllCardData] = useState([]); // all cards of that game
   const [cards, setCards] = useState([]); // rendering
   const [mouseIn, setMouseIn] = useState(false);
+
   const handleQuery = async () => {
-    const {
-      data: { cardData },
-    } = await axios.get("/cards", {
-      params: {
-        game,
-      },
-    });
-    setAllCardData(cardData);
-    console.log(cardData); //test
-    // setCards(cardData);
+    CardService.findGameCard(game)
+      .then((response) => {
+        setAllCardData(response.data.cardData);
+      })
+      .catch((error) => {
+        displayStatus({ type: "error", msg: error.response.data });
+      });
   };
+
   //tag or game changed, reselecting cards
   useEffect(() => {
     if (allCardData) {
@@ -35,12 +35,14 @@ const Card = (game) => {
       );
     }
   }, [tabState, allCardData]);
+
   //game changed, getting data from backend
   useEffect(() => {
     handleQuery();
   }, [game]);
 
   const changePage = () => {};
+
   return (
     <div className="container">
       <Tabs game={game} tabArray={tabArray} activeKey={tabState} setTabState={setTabState} />

@@ -10,9 +10,9 @@ import LogIn from "./containers/LogIn";
 import Register from "./containers/Register";
 import Store from "./containers/Store";
 import AddCard from "./containers/AddCard";
+import Profile from "./containers/Profile";
 import Detail from "./components/Detail";
 import Pay from "./components/Pay";
-import Profile from "./containers/Profile";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
