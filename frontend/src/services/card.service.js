@@ -4,7 +4,7 @@ class CardService {
   findGameCard(game) {
     return axios.get("/cards", { params: { game } });
   }
-  addGameCard(game, category, price, url, title, intro, detail, stock, username, account, goodAccount, goodPassport, point) {
+  addGameCard(game, category, price, url, title, intro, detail, stock, username, account, goodAccount, goodPassport, cardPoint) {
     let token;
     if (localStorage.getItem("user")) {
       token = JSON.parse(localStorage.getItem("user")).token;
@@ -26,7 +26,7 @@ class CardService {
         account,
         goodAccount,
         goodPassport,
-        point,
+        cardPoint,
       },
       {
         headers: {

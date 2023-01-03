@@ -2,6 +2,7 @@ import { UserModel } from "../models/user.js";
 import jwt from "jsonwebtoken";
 import { registerValidation, loginValidation } from "../validation.js";
 import "dotenv-defaults/config.js";
+import { CardModel } from "../models/card.js";
 
 export async function register(req, res) {
   console.log("Register");
@@ -9,7 +10,8 @@ export async function register(req, res) {
   if (error) return res.status(400).send(error.details[0].message);
 
   const emailExist = await UserModel.findOne({ email: req.body.email });
-  if (emailExist) return res.status(400).send("Email has already been registered.");
+  if (emailExist)
+    return res.status(400).send("Email has already been registered.");
 
   const newUser = new UserModel({
     email: req.body.email,
@@ -49,5 +51,37 @@ export async function login(req, res) {
         }
       });
     }
+  });
+}
+
+export async function pay(req, res) {
+  console.log("Pay");
+  console.log(req.body);
+  const buyerAccount = req.body.account;
+  const { buyerPay, sellerGain, fee, number, _id } = req.body;
+  //update buyer's point
+  const buyer = await UserModel.findOneAndUpdate(
+    { email: buyerAccount },
+    { $inc: { point: -1 * buyerPay } },
+    { new: true }
+  );
+  //update seller's point
+  const seller = await UserModel.findOneAndUpdate(
+    { email: buyerAccount },
+    { $inc: { point: sellerGain } },
+    { new: true }
+  );
+  //update stock
+  
+  //{test
+  const good = await CardModel.findByIdAndUpdate({ _id },{buyer:buyerAccount});
+  //test}
+  const{goodAccount,goodPassport} = good
+  console.log(`fee = ${fee}`);
+  res.send({
+    buyer,
+    seller,
+    goodAccount,
+    goodPassport,
   });
 }

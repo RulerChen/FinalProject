@@ -45,7 +45,12 @@ const Card = (game) => {
 
   return (
     <div className="container">
-      <Tabs game={game} tabArray={tabArray} activeKey={tabState} setTabState={setTabState} />
+      <Tabs
+        game={game}
+        tabArray={tabArray}
+        activeKey={tabState}
+        setTabState={setTabState}
+      />
       <Link to="/addCard" className="nav-link">
         <button className="btn btn-primary btn-lg" type="button">
           上架商品
@@ -67,14 +72,18 @@ const Card = (game) => {
                   onMouseLeave={() => {
                     setMouseIn(false);
                   }}
-                  style={mouseIn ? { cursor: "pointer" } : { cursor: "default" }}
+                  style={
+                    mouseIn ? { cursor: "pointer" } : { cursor: "default" }
+                  }
                   onClick={changePage}
                 />
               </Link>
 
               <div className="card-body">
-                <h4>{"NT$ " + item.price}</h4>
-                <h5 className="card-title">{`[${tabArray[tabState]}] ` + item.title}</h5>
+                <h4>{`NT$ ${item.price}`}</h4>
+                <h5 className="card-title">
+                  {`[${tabArray[tabState]}] ` + item.title}
+                </h5>
                 <p className="card-text">{item.intro}</p>
               </div>
             </div>

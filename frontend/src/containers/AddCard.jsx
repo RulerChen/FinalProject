@@ -12,7 +12,7 @@ const AddCard = () => {
   const [categoryState, setCategoryState] = useState("");
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
-    const { game, category, price, image, title, intro, detail, stock, goodAccount, goodPassport, point } = values;
+    const { game, category, price, image, title, intro, detail, stock, goodAccount, goodPassport, cardPoint } = values;
     const url = image[0].thumbUrl;
     CardService.addGameCard(
       game,
@@ -27,7 +27,7 @@ const AddCard = () => {
       account, //seller's email
       goodAccount, //good info
       goodPassport, //good info
-      point
+      cardPoint
     ).then((response) => {
       console.log(response);
       displayStatus({ type: "success", msg: response.data.message });
@@ -106,7 +106,7 @@ const AddCard = () => {
         {categoryState === "點數卡" && (
           <Form.Item
             label="點數卡點數"
-            name={"point"}
+            name={"cardPoint"}
             rules={[
               { required: true, message: "請填寫點數數量!" },
               { type: "string", min: 1, message: "點數數量不可小於等於0!" },
@@ -117,21 +117,21 @@ const AddCard = () => {
         )}
 
         <Form.Item
-          label={`${categoryState}帳號`}
+          label={`商品帳號`}
           name={"goodAccount"}
           rules={[
-            { required: true, message: `請填寫${categoryState}帳號` },
-            { type: "string", min: 1, message: `請填寫${categoryState}帳號` },
+            { required: true, message: `請填寫商品帳號` },
+            { type: "string", min: 1, message: `請填寫商品帳號` },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label={`${categoryState}密碼`}
+          label={`商品密碼`}
           name={"goodPassport"}
           rules={[
-            { required: true, message: `${categoryState}密碼` },
-            { type: "string", min: 1, message: `${categoryState}密碼` },
+            { required: true, message: `商品密碼` },
+            { type: "string", min: 1, message: `商品密碼` },
           ]}
         >
           <Input />
@@ -147,7 +147,7 @@ const AddCard = () => {
         >
           <InputNumber />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="庫存"
           name={"stock"}
           rules={[
@@ -156,7 +156,7 @@ const AddCard = () => {
           ]}
         >
           <InputNumber />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item
           label="上傳封面圖"
           valuePropName="fileList"

@@ -13,7 +13,7 @@ import AddCard from "./containers/AddCard";
 import Profile from "./containers/Profile";
 import Detail from "./components/Detail";
 import Pay from "./components/Pay";
-
+import PayDone from "./components/PayDone";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -31,6 +31,7 @@ const App = () => {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/pay/:id" element={<Pay />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/payment_completed" element={<PayDone />} />
       </Routes>
     </Router>
   );

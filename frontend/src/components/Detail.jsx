@@ -11,7 +11,7 @@ const Detail = () => {
   const renderCount = useRef(1);
   const mainData = useLocation().state;
   console.log(mainData);
-  const { title, price, detail, intro, url, stock, username, account } = mainData;
+  const { title, price, detail, intro, url, username, account, cardPoint } = mainData;
   const relate = [
     {
       title: "title 1",
@@ -27,7 +27,7 @@ const Detail = () => {
   //
   const clickBuyhandler = () => {
     if (signedIn === false) displayStatus({ type: "error", msg: `請先登入!` });
-    else if (renderCount.current > stock) displayStatus({ type: "error", msg: `庫存不足，只剩${stock}件!` });
+    // else if (renderCount.current > stock) displayStatus({ type: "error", msg: `庫存不足，只剩${stock}件!` });
     else navigate(`/Pay/${id}`, { state: { mainData, number: renderCount.current } });
   };
   return (
@@ -52,7 +52,7 @@ const Detail = () => {
               </div>
               <h4 className="lead">{intro}</h4>
               <p className="lead">{detail}</p>
-              <div className="d-flex">
+              {/* <div className="d-flex">
                 <input
                   className="form-control text-center me-3"
                   id="inputQuantity"
@@ -62,9 +62,9 @@ const Detail = () => {
                   onChange={(e) => {
                     renderCount.current = e.target.value;
                   }}
-                />
-                <div className="align-self-center">{`庫存 : ${stock}件`}</div>
-              </div>
+                /> */}
+                {/* <div className="align-self-center">{`庫存 : ${stock}件`}</div> */}
+              {/* </div> */}
               <button className="btn btn-outline-dark flex-shrink-0 mt-2" type="button" onClick={clickBuyhandler}>
                 <i className="bi-cart-fill me-1" />
                 Buy

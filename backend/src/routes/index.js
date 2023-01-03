@@ -12,6 +12,8 @@ function main(app) {
 
   app.post("/api/user/register", userRoute.register);
   app.post("/api/user/login", userRoute.login);
+  app.put("/api/user/pay", userRoute.pay);
+
 }
 
 export default main;
