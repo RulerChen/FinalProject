@@ -34,10 +34,10 @@ const Pay = () => {
         _id
       ).then((response) => {
         const BuyerPointLeft = response.data.buyer.point;
-        const { goodAccount, goodPassport } = response.data;
+        const { goodAccount, goodPassword } = response.data;
         setPoint(BuyerPointLeft);
         navigate("/payment_completed", {
-          state: { point: BuyerPointLeft, goodAccount, goodPassport },
+          state: { point: BuyerPointLeft, goodAccount, goodPassword },
         });
       });
     }

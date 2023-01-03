@@ -6,7 +6,7 @@ const PayDone = () => {
   const data = useLocation().state;
   const navigate = useNavigate();
   console.log(data);
-  const { goodAccount, goodPassport, point } = data;
+  const { goodAccount, goodPassword, point } = data;
   return (
     <div style={{ backgroundColor: "#eee" }}>
       <div className="container py-5">
@@ -30,7 +30,7 @@ const PayDone = () => {
                 ></div>
                 <hr />
                 <div className="p-2">商品帳號: {goodAccount}</div>
-                <div className="p-2">商品密碼: {goodPassport}</div>
+                <div className="p-2">商品密碼: {goodPassword}</div>
                 <hr />
                 <div className="pt-2">
                   <div className="d-flex pb-2">

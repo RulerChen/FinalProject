@@ -14,7 +14,7 @@ const cardSchema = new Schema({
   username: { type: String, required: [true, "username is required."] }, //賣家username
   account: { type: String, required: [true, "account is required."] }, //賣家gmail
   goodAccount: { type: String, required: [true, "goodAccount is required."] }, //商品帳號
-  goodPassport: { type: String, required: [true, "goodPassport is required."] }, //商品密碼
+  goodPassword: { type: String, required: [true, "goodPassword is required."] }, //商品密碼
   cardPoint: { type: Number }, //點數卡點數數量
   buyer: { type: String, default: "null" }, // 買家
 });

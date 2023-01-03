@@ -14,7 +14,7 @@ const AddCard = () => {
   const navigate = useNavigate()
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
-    const { game, category, price, image, title, intro, detail, stock, goodAccount, goodPassport, cardPoint } = values;
+    const { game, category, price, image, title, intro, detail, stock, goodAccount, goodPassword, cardPoint } = values;
     const url = image[0].thumbUrl;
     CardService.addGameCard(
       game,
@@ -28,7 +28,7 @@ const AddCard = () => {
       username, //seller's username
       account, //seller's email
       goodAccount, //good info
-      goodPassport, //good info
+      goodPassword, //good info
       cardPoint
     ).then((response) => {
       console.log(response);
@@ -132,7 +132,7 @@ const AddCard = () => {
         </Form.Item>
         <Form.Item
           label={`商品密碼`}
-          name={"goodPassport"}
+          name={"goodPassword"}
           rules={[
             { required: true, message: `商品密碼` },
             { type: "string", min: 1, message: `商品密碼` },

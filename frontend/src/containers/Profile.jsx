@@ -86,7 +86,7 @@ const Profile = () => {
                   </div>
                   <small>帳號:{card.goodAccount}</small>
                   <br></br>
-                  <small>密碼:{card.goodPassport}</small>
+                  <small>密碼:{card.goodPassword}</small>
                   <span className="d-block">身分:賣家</span>
                 </div>
               </div>
@@ -102,7 +102,7 @@ const Profile = () => {
                   </div>
                   <small>帳號:{card.goodAccount}</small>
                   <br></br>
-                  <small>密碼:{card.goodPassport}</small>
+                  <small>密碼:{card.goodPassword}</small>
                   <span className="d-block">身分:買家</span>
                 </div>
               </div>

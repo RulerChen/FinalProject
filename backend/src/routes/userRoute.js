@@ -63,12 +63,12 @@ export async function pay(req, res) {
   const seller = await UserModel.findOneAndUpdate({ email: sellerAccount }, { $inc: { point: sellerGain } }, { new: true });
   //update stock
   const good = await CardModel.findByIdAndUpdate({ _id }, { buyer: buyerAccount });
-  const { goodAccount, goodPassport } = good;
+  const { goodAccount, goodPassword } = good;
   console.log(`fee = ${fee}`);
   res.send({
     buyer,
     seller,
     goodAccount,
-    goodPassport,
+    goodPassword,
   });
 }

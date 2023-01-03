@@ -52,12 +52,12 @@ const Card = (game) => {
         setTabState={setTabState}
       />
       <div className="row row-cols-1 row-cols-md-4 g-4">
-        {cards.length === 0 && (
+        {/* {cards.length === 0 && (
           <div>
-            <h2>還沒有商品上架~</h2>
+            還沒有商品上架
             <img src={emptyPage} />
           </div>
-        )}
+        )} */}
         {cards.map((item, index) => (
           <div className="col" key={index}>
             <div className="card">
