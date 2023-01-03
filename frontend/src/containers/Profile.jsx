@@ -83,9 +83,11 @@ const Profile = () => {
                 <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
                   <div className="d-flex justify-content-between">
                     <strong className="text-gray-dark">{card.title}</strong>
-                    <Link to="#">View</Link>
                   </div>
-                  <span className="d-block">seller</span>
+                  <small>帳號:{card.goodAccount}</small>
+                  <br></br>
+                  <small>密碼:{card.goodPassport}</small>
+                  <span className="d-block">身分:賣家</span>
                 </div>
               </div>
             );
@@ -97,9 +99,11 @@ const Profile = () => {
                 <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
                   <div className="d-flex justify-content-between">
                     <strong className="text-gray-dark">{card.title}</strong>
-                    <Link to="#">View</Link>
                   </div>
-                  <span className="d-block">buy</span>
+                  <small>帳號:{card.goodAccount}</small>
+                  <br></br>
+                  <small>密碼:{card.goodPassport}</small>
+                  <span className="d-block">身分:買家</span>
                 </div>
               </div>
             );
