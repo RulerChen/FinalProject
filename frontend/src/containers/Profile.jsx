@@ -11,11 +11,13 @@ const Profile = () => {
   const [goodsell, setGoodsell] = useState([]);
 
   useEffect(() => {
-    CardService.findHistory(account).then((response) => {
-      const { buy, sell } = response.data;
-      setGoodbuy(buy);
-      setGoodsell(sell);
-    });
+    if (account) {
+      CardService.findHistory(account).then((response) => {
+        const { buy, sell } = response.data;
+        setGoodbuy(buy);
+        setGoodsell(sell);
+      });
+    }
   });
 
   return (

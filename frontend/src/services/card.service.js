@@ -11,9 +11,9 @@ class CardService {
     } else {
       token = "";
     }
-    return axios.get(
+    return axios.post(
       "/cards/history",
-      { params: { account } },
+      { account },
       {
         headers: {
           Authorization: token,

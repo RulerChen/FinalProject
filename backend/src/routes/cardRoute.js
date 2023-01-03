@@ -24,8 +24,8 @@ export async function addGameCard(req, res) {
 }
 
 export async function getHistory(req, res) {
-  const buy = await CardModel.find({ buyer: req.query.account });
-  const sell = await CardModel.find({ account: req.query.account });
+  const buy = await CardModel.find({ buyer: req.body.account });
+  const sell = await CardModel.find({ account: req.body.account });
   res.send({ buy, sell });
 }
 
