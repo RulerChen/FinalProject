@@ -6,7 +6,7 @@ import Tabs from "./Tab";
 import CardService from "../services/card.service";
 
 import lolImage from "../pics/bg1.jpg";
-
+import emptyPage from "../pics/undraw_new_year_2023_pfnc.svg";
 const tabArray = ["帳號", "點數卡"];
 const Card = (game) => {
   const { displayStatus } = useHook();
@@ -45,8 +45,19 @@ const Card = (game) => {
 
   return (
     <div className="container">
-      <Tabs game={game} tabArray={tabArray} activeKey={tabState} setTabState={setTabState} />
+      <Tabs
+        game={game}
+        tabArray={tabArray}
+        activeKey={tabState}
+        setTabState={setTabState}
+      />
       <div className="row row-cols-1 row-cols-md-4 g-4">
+        {cards.length === 0 && (
+          <div>
+            <h2>還沒有商品上架~</h2>
+            <img src={emptyPage} />
+          </div>
+        )}
         {cards.map((item, index) => (
           <div className="col" key={index}>
             <div className="card">
@@ -63,14 +74,18 @@ const Card = (game) => {
                   onMouseLeave={() => {
                     setMouseIn(false);
                   }}
-                  style={mouseIn ? { cursor: "pointer" } : { cursor: "default" }}
+                  style={
+                    mouseIn ? { cursor: "pointer" } : { cursor: "default" }
+                  }
                   onClick={changePage}
                 />
               </Link>
 
               <div className="card-body">
                 <h4>{`NT$ ${item.price}`}</h4>
-                <h5 className="card-title">{`[${tabArray[tabState]}] ` + item.title}</h5>
+                <h5 className="card-title">
+                  {`[${tabArray[tabState]}] ` + item.title}
+                </h5>
                 <p className="card-text">{item.intro}</p>
               </div>
             </div>

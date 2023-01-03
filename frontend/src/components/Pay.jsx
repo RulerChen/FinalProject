@@ -7,25 +7,32 @@ import AuthService from "../services/auth.service";
 const Pay = () => {
   const data = useLocation().state;
   const navigate = useNavigate();
-  const { point, setPoint} = useHook();
+  const { point, setPoint, displayStatus } = useHook();
   console.log(data);
   const { title, price, category, game, cardPoint, _id } = data.mainData;
   const buyerAccount = useHook().account;
   const sellerAccount = data.mainData.account;
   const sellerUsername = data.mainData.username;
-  // const { number } = data;
-  // account = 賣家 email
-  // buyerAccount = 買家 email
   const feeRatio = 0.01;
   const buyerPay = price + Math.floor(feeRatio * price);
   const fee = Math.ceil(feeRatio * price);
   const sellerGain = buyerPay - fee;
   const payHandler = async () => {
     console.log(point);
-    if (point < price + Math.floor(feeRatio * price)) {
-      console.log("餘額不足");
+    if (buyerAccount === sellerAccount) {
+      displayStatus({ type: "error", msg: "這是您所上架的商品" });
+    }
+    else if (point < price + Math.floor(feeRatio * price)) {
+      displayStatus({ type: "error", msg: "餘額不足" });
     } else {
-      await AuthService.pay(buyerAccount,sellerAccount, buyerPay, sellerGain, fee, _id).then((response) => {
+      await AuthService.pay(
+        buyerAccount,
+        sellerAccount,
+        buyerPay,
+        sellerGain,
+        fee,
+        _id
+      ).then((response) => {
         const BuyerPointLeft = response.data.buyer.point;
         const { goodAccount, goodPassport } = response.data;
         setPoint(BuyerPointLeft);
@@ -50,11 +57,17 @@ const Pay = () => {
                 </div>
                 <h4 className="text-success">{`NT$ ${buyerPay}`}</h4>
                 <h4>{title}</h4>
-                {category === "點數卡" && <h4>{`${game}點數卡 ${cardPoint} 點`}</h4>}
-                <div className="rounded d-flex" style={{ backgroundColor: "#f8f9fa" }}></div>
+                {category === "點數卡" && (
+                  <h4>{`${game}點數卡 ${cardPoint} 點`}</h4>
+                )}
+                <div
+                  className="rounded d-flex"
+                  style={{ backgroundColor: "#f8f9fa" }}
+                ></div>
                 <hr />
                 <div className="p-2">
-                  賣家: {sellerUsername}&emsp;&emsp;&emsp;&emsp;gmail: {sellerAccount}
+                  賣家: {sellerUsername}&emsp;&emsp;&emsp;&emsp;gmail:{" "}
+                  {sellerAccount}
                 </div>
                 <hr />
                 <div className="pt-2">
@@ -68,16 +81,27 @@ const Pay = () => {
                     <div className="ms-auto"></div>
                   </div>
                   <br />
-                  <input type="button" defaultValue="付款" className="btn btn-primary btn-block btn-lg" onClick={payHandler} />
+                  <input
+                    type="button"
+                    defaultValue="付款"
+                    className="btn btn-primary btn-block btn-lg"
+                    onClick={payHandler}
+                  />
                 </div>
               </div>
               <div className="col-md-5 col-xl-4 offset-xl-1">
                 <div className="py-4 d-flex justify-content-end">
-                  <button className="btn btn-secondary btn-sm active" onClick={() => navigate(-1)}>
+                  <button
+                    className="btn btn-secondary btn-sm active"
+                    onClick={() => navigate(-1)}
+                  >
                     取消並回前頁
                   </button>
                 </div>
-                <div className="rounded d-flex flex-column p-2" style={{ backgroundColor: "#f8f9fa" }}>
+                <div
+                  className="rounded d-flex flex-column p-2"
+                  style={{ backgroundColor: "#f8f9fa" }}
+                >
                   <div className="p-2 me-3">
                     <h4>訂單</h4>
                   </div>
