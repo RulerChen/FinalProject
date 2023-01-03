@@ -7,10 +7,15 @@ import AuthService from "../services/auth.service";
 const Pay = () => {
   const data = useLocation().state;
   const navigate = useNavigate();
-  const { point, setPoint } = useHook();
+  const { point, setPoint} = useHook();
   console.log(data);
-  const { title, price, username, account, category, game, cardPoint, _id } = data.mainData;
+  const { title, price, category, game, cardPoint, _id } = data.mainData;
+  const buyerAccount = useHook().account;
+  const sellerAccount = data.mainData.account;
+  const sellerUsername = data.mainData.username;
   // const { number } = data;
+  // account = 賣家 email
+  // buyerAccount = 買家 email
   const feeRatio = 0.01;
   const buyerPay = price + Math.floor(feeRatio * price);
   const fee = Math.ceil(feeRatio * price);
@@ -20,7 +25,7 @@ const Pay = () => {
     if (point < price + Math.floor(feeRatio * price)) {
       console.log("餘額不足");
     } else {
-      await AuthService.pay(account, buyerPay, sellerGain, fee, _id).then((response) => {
+      await AuthService.pay(buyerAccount,sellerAccount, buyerPay, sellerGain, fee, _id).then((response) => {
         const BuyerPointLeft = response.data.buyer.point;
         const { goodAccount, goodPassport } = response.data;
         setPoint(BuyerPointLeft);
@@ -49,7 +54,7 @@ const Pay = () => {
                 <div className="rounded d-flex" style={{ backgroundColor: "#f8f9fa" }}></div>
                 <hr />
                 <div className="p-2">
-                  賣家: {username}&emsp;&emsp;&emsp;&emsp;gmail: {account}
+                  賣家: {sellerUsername}&emsp;&emsp;&emsp;&emsp;gmail: {sellerAccount}
                 </div>
                 <hr />
                 <div className="pt-2">

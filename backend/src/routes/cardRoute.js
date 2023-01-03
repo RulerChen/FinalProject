@@ -20,7 +20,7 @@ export async function addGameCard(req, res) {
     .catch((e) => {
       console.log("error:" + e);
     });
-  // res.send({message: "success"});
+
 }
 
 export async function getHistory(req, res) {

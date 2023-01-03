@@ -4,12 +4,14 @@ import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 
 import { useHook } from "../hooks/useHook.jsx";
 import CardService from "../services/card.service.js";
+import { useNavigate } from "react-router-dom";
 
 const { TextArea } = Input;
 const AddCard = () => {
   const [form] = Form.useForm();
   const { username, account, displayStatus } = useHook();
   const [categoryState, setCategoryState] = useState("");
+  const navigate = useNavigate()
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const { game, category, price, image, title, intro, detail, stock, goodAccount, goodPassport, cardPoint } = values;
@@ -31,6 +33,8 @@ const AddCard = () => {
     ).then((response) => {
       console.log(response);
       displayStatus({ type: "success", msg: response.data.message });
+
+      navigate(`/store/${game}`)
     });
   };
 

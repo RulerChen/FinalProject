@@ -56,17 +56,13 @@ export async function login(req, res) {
 export async function pay(req, res) {
   console.log("Pay");
   console.log(req.body);
-  const buyerAccount = req.body.account;
-  const { buyerPay, sellerGain, fee, number, _id } = req.body;
+  const {buyerAccount,sellerAccount, buyerPay, sellerGain, fee, _id} = req.body;
   //update buyer's point
   const buyer = await UserModel.findOneAndUpdate({ email: buyerAccount }, { $inc: { point: -1 * buyerPay } }, { new: true });
   //update seller's point
-  const seller = await UserModel.findOneAndUpdate({ email: buyerAccount }, { $inc: { point: sellerGain } }, { new: true });
+  const seller = await UserModel.findOneAndUpdate({ email: sellerAccount }, { $inc: { point: sellerGain } }, { new: true });
   //update stock
-
-  //{test
   const good = await CardModel.findByIdAndUpdate({ _id }, { buyer: buyerAccount });
-  //test}
   const { goodAccount, goodPassport } = good;
   console.log(`fee = ${fee}`);
   res.send({

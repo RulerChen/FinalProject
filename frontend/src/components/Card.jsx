@@ -53,6 +53,7 @@ const Card = (game) => {
               {/* todo: add default images to each game. */}
               <Link to={`/detail/${item._id}`} state={item}>
                 <img
+                  height={259}
                   src={item.url ? item.url : lolImage}
                   loading="lazy"
                   className="card-img-top"

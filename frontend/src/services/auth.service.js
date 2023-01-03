@@ -17,7 +17,7 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
   }
-  pay(account, buyerPay, sellerGain, fee, _id) {
+  pay(buyerAccount,sellerAccount, buyerPay, sellerGain, fee, _id) {
     let token;
     if (localStorage.getItem("user")) {
       token = JSON.parse(localStorage.getItem("user")).token;
@@ -27,7 +27,8 @@ class AuthService {
     return axios.put(
       "/user/pay",
       {
-        account,
+        buyerAccount,
+        sellerAccount,
         buyerPay,
         sellerGain,
         fee,
