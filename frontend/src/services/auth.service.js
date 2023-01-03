@@ -1,14 +1,14 @@
-import instance from "../api.jsx";
+import axios from "../api.jsx";
 
 class AuthService {
   login(email, password) {
-    return instance.post("/user/login", { email, password });
+    return axios.post("/user/login", { email, password });
   }
   logout() {
     localStorage.removeItem("user");
   }
   register(username, email, password) {
-    return instance.post("user/register", {
+    return axios.post("user/register", {
       username,
       email,
       password,

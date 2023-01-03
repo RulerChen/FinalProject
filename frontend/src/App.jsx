@@ -22,7 +22,7 @@ const App = () => {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={signedIn === true ? <HomeOn /> : <HomeUn />} />
+        <Route path="/" element={signedIn ? <HomeOn /> : <HomeUn />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/register" element={<Register />} />

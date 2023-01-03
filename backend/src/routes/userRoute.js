@@ -43,7 +43,7 @@ export async function login(req, res) {
         if (isMatch) {
           const tokenObject = { _id: user._id, email: user.email };
           const token = jwt.sign(tokenObject, process.env.PASSPORT_SECRET);
-          res.send({ success: true, token: "JWT " + token, user });
+          res.send({ success: true, token: token, user });
         } else {
           res.status(401).send("Wrong password.");
         }
