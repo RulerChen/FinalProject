@@ -23,32 +23,30 @@ const AddCard = () => {
       title,
       intro,
       detail,
-      // stock,
       goodAccount,
       goodPassword,
       cardPoint,
     } = values;
     const url = image[0].thumbUrl;
+    console.log(goodPassword)
     CardService.addGameCard(
-      game,
+      {game,
       category,
       price,
       url, //todo: enable uploading without img
       title,
       intro,
       detail,
-      // stock,
       username, //seller's username
       account, //seller's email
       goodAccount, //good info
       goodPassword, //good info
-      cardPoint
+      cardPoint}
     ).then((response) => {
-      console.log(response);
+      // console.log(response);
       displayStatus({ type: "success", msg: response.data.message });
-
       navigate(`/store/${game}`);
-    });
+    })
   };
 
   const tmpPrice = Form.useWatch("price", form);

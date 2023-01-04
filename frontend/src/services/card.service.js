@@ -21,7 +21,7 @@ class CardService {
       }
     );
   }
-  addGameCard(game, category, price, url, title, intro, detail, stock, username, account, goodAccount, goodPassword, cardPoint) {
+  addGameCard({game, category, price, url, title, intro, detail, username, account, goodAccount, goodPassword, cardPoint}) {
     let token;
     if (localStorage.getItem("user")) {
       token = JSON.parse(localStorage.getItem("user")).token;
@@ -38,7 +38,6 @@ class CardService {
         title,
         intro,
         detail,
-        stock,
         username,
         account,
         goodAccount,
