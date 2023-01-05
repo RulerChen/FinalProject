@@ -1,17 +1,25 @@
 import express from "express";
+import passport from "passport";
 import cors from "cors";
-import db from "./db.js";
 import path from "path";
+
+import db from "./db.js";
 import routes from "./routes/index.js";
+
+import "./services/jwtStrategy.js";
+import "./services/googleStrategy.js";
 import "dotenv-defaults/config.js";
 
 const app = express();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+
 
 if (process.env.NODE_ENV !== "production") app.use(cors());
 
 db.connect();
-
 routes(app);
 
 if (process.env.NODE_ENV === "production") {

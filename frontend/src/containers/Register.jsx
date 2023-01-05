@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Google, Facebook } from "react-bootstrap-icons";
 
 import { useHook } from "../hooks/useHook";
 import AuthService from "../services/auth.service";
@@ -8,7 +7,6 @@ import AuthService from "../services/auth.service";
 import img from "../pics/logIn.svg";
 
 import "../css/register.css";
-
 
 const Register = () => {
   const { displayStatus } = useHook();
@@ -83,21 +81,6 @@ const Register = () => {
                 </div> */}
 
                 <input type="submit" value="Regist" className="btn btn-block btn-primary" onClick={handleRegister} />
-
-                <span className="d-block text-left my-4 text-muted">&mdash; or regist with &mdash;</span>
-
-                <div className="social-login">
-                  <a href="#" className="facebook pr-3">
-                    <span className="icon-facebook mr-3">
-                      <Facebook />
-                    </span>
-                  </a>
-                  <a href="#" className="google pr-3">
-                    <span className="icon-google mr-3">
-                      <Google />
-                    </span>
-                  </a>
-                </div>
               </div>
             </div>
           </div>

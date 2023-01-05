@@ -4,6 +4,7 @@ class AuthService {
   login(email, password) {
     return axios.post("/user/login", { email, password });
   }
+
   logout() {
     localStorage.removeItem("user");
   }
@@ -17,7 +18,7 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
   }
-  pay(buyerAccount,sellerAccount, buyerPay, sellerGain, fee, _id) {
+  pay(buyerAccount, sellerAccount, buyerPay, sellerGain, fee, _id) {
     let token;
     if (localStorage.getItem("user")) {
       token = JSON.parse(localStorage.getItem("user")).token;

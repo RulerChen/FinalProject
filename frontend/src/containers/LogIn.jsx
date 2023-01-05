@@ -32,6 +32,7 @@ const LogIn = () => {
         displayStatus({ type: "error", msg: error.response.data });
       });
   };
+
   return (
     <div className="content">
       <div className="container">
@@ -74,12 +75,7 @@ const LogIn = () => {
                 <span className="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
 
                 <div className="social-login">
-                  <a href="#" className="facebook pr-3">
-                    <span className="icon-facebook mr-3">
-                      <Facebook />
-                    </span>
-                  </a>
-                  <a href="#" className="google pr-3">
+                  <a href="http://localhost:4000/api/user/google" className="google pr-3">
                     <span className="icon-google mr-3">
                       <Google />
                     </span>

@@ -56,7 +56,7 @@ export async function login(req, res) {
 export async function pay(req, res) {
   console.log("Pay");
   console.log(req.body);
-  const {buyerAccount,sellerAccount, buyerPay, sellerGain, fee, _id} = req.body;
+  const { buyerAccount, sellerAccount, buyerPay, sellerGain, fee, _id } = req.body;
   //update buyer's point
   const buyer = await UserModel.findOneAndUpdate({ email: buyerAccount }, { $inc: { point: -1 * buyerPay } }, { new: true });
   //update seller's point
@@ -71,4 +71,11 @@ export async function pay(req, res) {
     goodAccount,
     goodPassword,
   });
+}
+
+export function googleRedirect(req, res) {
+  const { user } = req;
+  const tokenObj = { id: user._id, email: user.email };
+  const token = jwt.sign(tokenObj, process.env.PASSPORT_SECRET);
+  res.redirect("http://localhost:3000");
 }
