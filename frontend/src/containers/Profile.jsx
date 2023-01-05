@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { UserOutlined, MailOutlined, KeyOutlined, PoundCircleOutlined, ShoppingCartOutlined, CrownOutlined } from "@ant-design/icons";
 
 import { useHook } from "../hooks/useHook";

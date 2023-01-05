@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Google, Facebook } from "react-bootstrap-icons";
+import { Google  } from "react-bootstrap-icons";
 
 import { useHook } from "../hooks/useHook";
 import AuthService from "../services/auth.service";
@@ -38,7 +38,7 @@ const LogIn = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <img src={img} alt="Image" className="img-fluid" />
+            <img src={img} alt="img" className="img-fluid" />
           </div>
           <div className="col-md-6 contents">
             <div className="row justify-content-center">

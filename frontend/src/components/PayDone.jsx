@@ -5,7 +5,6 @@ import { useHook } from "../hooks/useHook";
 const PayDone = () => {
   const data = useLocation().state;
   const navigate = useNavigate();
-  console.log(data);
   const { goodAccount, goodPassword, point } = data;
   return (
     <div style={{ backgroundColor: "#eee" }}>

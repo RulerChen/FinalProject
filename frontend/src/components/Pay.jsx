@@ -8,7 +8,6 @@ const Pay = () => {
   const data = useLocation().state;
   const navigate = useNavigate();
   const { point, setPoint, displayStatus } = useHook();
-  console.log(data);
   const { title, price, category, game, cardPoint, _id } = data.mainData;
   const buyerAccount = useHook().account;
   const sellerAccount = data.mainData.account;
@@ -18,7 +17,6 @@ const Pay = () => {
   const fee = Math.ceil(feeRatio * price);
   const sellerGain = buyerPay - fee;
   const payHandler = async () => {
-    console.log(point);
     if (buyerAccount === sellerAccount) {
       displayStatus({ type: "error", msg: "這是您所上架的商品" });
     }

@@ -14,6 +14,7 @@ const Card = (game) => {
   const [allCardData, setAllCardData] = useState([]); // all cards of that game
   const [cards, setCards] = useState([]); // rendering
   const [mouseIn, setMouseIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleQuery = async () => {
     CardService.findGameCard(game)
@@ -27,17 +28,20 @@ const Card = (game) => {
 
   //tag or game changed, reselecting cards
   useEffect(() => {
+    setLoading(true);
     if (allCardData) {
       setCards(
         allCardData.filter((item) => {
           return item.category === tabArray[tabState];
         })
       );
+      setLoading(false);
     }
   }, [tabState, allCardData]);
 
   //game changed, getting data from backend
   useEffect(() => {
+    setLoading(true);
     handleQuery();
   }, [game]);
 
@@ -52,12 +56,12 @@ const Card = (game) => {
         setTabState={setTabState}
       />
       <div className="row row-cols-1 row-cols-md-4 g-4">
-        {/* {cards.length === 0 && (
-          <div>
-            還沒有商品上架
+        {cards.length === 0 && loading===false && (
+          <div className="text-center">
+            <h1>還沒有商品上架~</h1>
             <img src={emptyPage} />
           </div>
-        )} */}
+        )}
         {cards.map((item, index) => (
           <div className="col" key={index}>
             <div className="card">

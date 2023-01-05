@@ -14,6 +14,7 @@ import Profile from "./containers/Profile";
 import Detail from "./components/Detail";
 import Pay from "./components/Pay";
 import PayDone from "./components/PayDone";
+
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {

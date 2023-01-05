@@ -32,7 +32,7 @@ const Register = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <img src={img} alt="Image" className="img-fluid" />
+            <img src={img} alt="img" className="img-fluid" />
           </div>
           <div className="col-md-6 contents">
             <div className="row justify-content-center">

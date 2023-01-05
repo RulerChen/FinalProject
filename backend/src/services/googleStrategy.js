@@ -11,9 +11,9 @@ passport.use(
       clientSecret: process.env.GOOGLE_SECRET,
       callbackURL: "http://localhost:4000/user/google/redirect",
     },
-    async (accessToken, refreshToken, profile, done) => {
+     (accessToken, refreshToken, profile, done) => {
     //   console.log(profile);
-      await UserModel.findOne({ email: profile.emails[0].value }).then((foundUser) => {
+       UserModel.findOne({ email: profile.emails[0].value }).then((foundUser) => {
         if (foundUser) {
           console.log("User already exist");
           done(null, foundUser);
